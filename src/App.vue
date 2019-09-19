@@ -8,7 +8,6 @@
 
 #app {
   background: #222;
-  text-align: center;
   font-family: 'Roboto Mono';
   padding: 1em;
   box-sizing: border-box;

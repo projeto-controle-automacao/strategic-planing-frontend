@@ -36,7 +36,7 @@
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Email</label>
-					<input type="text" class="email">
+					<input type="text" class="input">
 				</div>
 				<div class="group btn-pad">
 					<input type="submit" class="button cursor " value="Cadastrar">
@@ -87,9 +87,7 @@ export default {
 
 </script>
 
-<style lang="scss">
-
-
+<style lang="scss" scoped>
 
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}

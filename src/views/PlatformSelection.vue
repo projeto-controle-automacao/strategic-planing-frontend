@@ -8,7 +8,7 @@
       <div class="back">
         <h2>Planejamento estratégico</h2>
         <p>Tenha sua empresa na palma da sua mão. Com o nossa ferramenta de planejamento estratégico saiba onde concentrar forças e fazer sua empresa crescer</p>
-        <button  class="brk-btn"> Acessar plataforma </button>
+        <button @click="acessarPlanejamento" class="brk-btn"> Acessar plataforma </button>
       </div>
     </div>
 
@@ -45,9 +45,17 @@
   </div>
 
 </div>
-
 </template>
 
+<script>
+export default {
+  methods: {
+    acessarPlanejamento (){
+      this.$router.push({ name: "login" });
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
