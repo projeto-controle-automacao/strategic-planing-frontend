@@ -9,7 +9,7 @@
 #app {
   background: #222;
   font-family: 'Roboto Mono';
-  padding: 1em;
+  // padding: 1em;
   box-sizing: border-box;
   font-weight: normal;
 
