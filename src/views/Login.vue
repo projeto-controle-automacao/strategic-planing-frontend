@@ -1,49 +1,53 @@
 <template>
-<div class="login-wrap" :style="{ backgroundImage: 'url(' + require('@/assets/login.jpg') +  ')' }">
+<div class="login-wrap">
 	<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Entrar</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">CADASTRAR</label>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="email" class="label">Email</label>
-					<input  type="email" class="input" v-model="formulario.email" >
+					<label for="user" class="label">Username</label>
+					<input id="user" type="text" class="input">
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Senha</label>
-					<input type="password" class="input" data-type="password" v-model="formulario.senha">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input" data-type="password">
 				</div>
-				<div class="group btn-pad">
-					<input @click="login" type="submit" class="button cursor" value="Entrar">
+				<div class="group">
+					<input id="check" type="checkbox" class="check" checked>
+					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign In">
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
-					<a href="#forgot">Esqueceu a senha?</a>
+					<a href="#forgot">Forgot Password?</a>
 				</div>
 			</div>
 			<div class="sign-up-htm">
 				<div class="group">
-					<label for="user" class="label">Usuario</label>
-					<input type="text" class="input">
+					<label for="user" class="label">Username</label>
+					<input id="user" type="text" class="input">
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Senha</label>
-					<input  type="password" class="input" data-type="password">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input" data-type="password">
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Repita a senha</label>
-					<input  type="password" class="input" data-type="password">
+					<label for="pass" class="label">Repeat Password</label>
+					<input id="pass" type="password" class="input" data-type="password">
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Email</label>
-					<input type="text" class="input">
+					<label for="pass" class="label">Email Address</label>
+					<input id="pass" type="text" class="input">
 				</div>
-				<div class="group btn-pad">
-					<input type="submit" class="button cursor " value="Cadastrar">
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up">
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
-					<label for="tab-1">Já possui conta?</label>
+					<label for="tab-1">Already Member?</label>
 				</div>
 			</div>
 		</div>
@@ -52,43 +56,14 @@
 </template>
 
 <script>
-import Axios from 'axios';
+// @ is an alias to /src
 
 export default {
-  components: {
-    Axios
-},
-  data: () => ({
-  formulario: {
-        email: "",
-        senha: ""
-      }
-  }),
 
-  methods: {
-    login() {
-      Axios.post(
-        "http://127.0.0.1:8000/api/v1/login",
-        {
-          email: this.formulario.email,
-          password: this.formulario.senha
-        })
-        .then(res => {
-          localStorage.setItem("token", res.data.token);
-          this.$router.push({ name: "home" });
-        })
-        .catch(err => {
-          console.log("error", "Verifique email e senha");
-        });
-    },
-  }
-}
-
-
+};
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
@@ -100,16 +75,15 @@ a{color:inherit;text-decoration:none}
 	max-width:525px;
 	min-height:670px;
 	position:relative;
+	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
-	color:#8a8a8a;
-	font:600 16px/18px 'Open Sans',sans-serif;
 }
 .login-html{
 	width:100%;
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-	background:rgba(0,0,0,.7);
+	background:rgba(40,57,101,.9);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -158,26 +132,23 @@ a{color:inherit;text-decoration:none}
 .login-form .group .input,
 .login-form .group .button{
 	width:100%;
-	color: #000;
-  font-size: 16px;
+	color:#fff;
 	display:block;
-
 }
 .login-form .group .input,
 .login-form .group .button{
 	border:none;
 	padding:15px 20px;
 	border-radius:25px;
-	background:rgba(255,255,255,.60);
-
+	background:rgba(255,255,255,.1);
 }
 .login-form .group input[data-type="password"]{
-	text-security: circle;
+	text-security:circle;
 	-webkit-text-security:circle;
 }
 .login-form .group .label{
-	color:#FFF;
-	font-size:16px;
+	color:#aaa;
+	font-size:12px;
 }
 .login-form .group .button{
 	background:#1161ee;
@@ -236,15 +207,6 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
 	text-align:center;
-  color: #ddd;
-}
-
-.btn-pad{
-  padding-top: 20px;
-}
-
-.cursor{
-    cursor: pointer;
 }
 
 </style>
