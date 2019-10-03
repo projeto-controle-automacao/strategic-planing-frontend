@@ -31,6 +31,7 @@ export default new Router({
           name: 'empresas',
           component: Empresas
         },
+
         // {
         //   // UserPosts will be rendered inside User's <router-view>
         //   // when /user/:id/posts is matched

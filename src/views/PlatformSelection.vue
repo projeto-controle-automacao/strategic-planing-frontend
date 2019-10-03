@@ -184,7 +184,7 @@ text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px r
     right: 20%;
     top: -0.21em;
     transform: skewX(-45deg);
-    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.70, 1);
     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
   }
   &::after {
@@ -197,7 +197,7 @@ text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px r
     left: 20%;
     bottom: -0.25em;
     transform: skewX(45deg);
-    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
   }
   &:hover {
