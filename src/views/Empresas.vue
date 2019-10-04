@@ -9,7 +9,7 @@
         <p>Nome fantasia: {{empresa.fancy_name}}</p>
         <p></p>
         <p>CNPJ: {{empresa.CNPJ}}</p>
-        <button @click="modal">Perfil e Planejamento</button>
+        <button>Perfil e Planejamento</button>
       </li>
     </ul>
   </div>
@@ -105,87 +105,39 @@ export default {
                 "</h3>" +
                 "</code></pre>"
             })
-            .then(async () => {
-              await Axios.post(
-                "http://127.0.0.1:8000/api/v1/companies",
-                {
-                  company_name: formValues[0],
-                  CNPJ: formValues[1],
-                  fancy_name: formValues[2]
-                },
-                {
-                  headers: { Authorization: `Bearer ${this.token}` }
-                }
-              )
-                .then(response => {
-                  this.empresas.push({ ...response.data[0] });
-                  this.$notify({
-                    group: "foo",
-                    title: "Sucesso",
-                    text: "Empresa cadastrada",
-                    type: "success"
+            .then(async res => {
+              if (!res.dismiss) {
+                await Axios.post(
+                  "http://127.0.0.1:8000/api/v1/companies",
+                  {
+                    company_name: formValues[0],
+                    CNPJ: formValues[1],
+                    fancy_name: formValues[2]
+                  },
+                  {
+                    headers: { Authorization: `Bearer ${this.token}` }
+                  }
+                )
+                  .then(response => {
+                    this.empresas.push({ ...response.data[0] });
+                    this.$notify({
+                      group: "foo",
+                      title: "Sucesso",
+                      text: "Empresa cadastrada",
+                      type: "success"
+                    });
+                  })
+                  .catch(err => {
+                    this.$notify({
+                      group: "foo",
+                      title: "Erro ao cadastrar empresa!",
+                      type: "error"
+                    });
                   });
-                })
-                .catch(err => {
-                  this.$notify({
-                    group: "foo",
-                    title: "Erro ao cadastrar empresa!",
-                    type: "error"
-                  });
-                });
+              }
             });
         }
       }
-    },
-
-    async novaEmpresa() {
-      let vm = this;
-      this.$swal
-        .mixin({
-          input: "text",
-          confirmButtonText: "Próximo &rarr;",
-          showCancelButton: true,
-          progressSteps: ["1", "2", "3"]
-        })
-        .queue([
-          {
-            title: "Empresa",
-            text: "Como sua empresa se chama?"
-          },
-          "CNPJ",
-          {
-            title: "Nome fantasia"
-          }
-        ])
-        .then(result => {
-          if (result.value) {
-            this.FormEmpresa.nome = result.value[0];
-            this.FormEmpresa.CNPJ = result.value[1];
-            this.FormEmpresa.fantasia = result.value[2];
-            this.$swal.fire({
-              title: "Pronto!",
-              html:
-                "Dados da empresa: <pre><code>" +
-                "<h3><b>Nome:</b> " +
-                result.value[0] +
-                "</h3>" +
-                "<h3><b>CNPJ:</b> " +
-                result.value[1] +
-                "</h3>" +
-                "<h3><b>Nome fantasia:</b> " +
-                result.value[2] +
-                "</h3>" +
-                "</code></pre>",
-              confirmButtonText: "Cadastrar!",
-              showCancelButton: true,
-              showLoaderOnConfirm: true,
-              preConfirm: async result => {}
-            });
-          }
-        });
-    },
-    teste() {
-      this.$swal.showLoading();
     }
   }
 };
