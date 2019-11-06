@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <h1>Minhas empresas</h1>
     <button @click="modal">Nova empresa</button>
     <ul class="tilesWrap">
@@ -9,9 +9,19 @@
         <p>Nome fantasia: {{empresa.fancy_name}}</p>
         <p></p>
         <p>CNPJ: {{empresa.CNPJ}}</p>
-        <button>Perfil e Planejamento</button>
+        <button @click="irParaPerfil(empresa.id)">Perfil e Planejamento</button>
       </li>
     </ul>
+  </div>-->
+  <div>
+    <div class="card transition" v-for="(empresa, i) in empresas" :key="empresa.id">
+      <h2 class="transition">Awesome Headline</h2>
+      <p>Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla.</p>
+      <div class="cta-container transition">
+        <a href="#" @click="modal" class="cta">Call to action</a>
+      </div>
+      <div class="card_circle transition"></div>
+    </div>
   </div>
 </template>
 
@@ -51,6 +61,8 @@ export default {
         });
     },
     irParaPerfil(id) {
+      this.$router.push({ name: "perfil-empresa", params: { empresa: id } });
+
       console.log(id);
     },
 
@@ -143,128 +155,141 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.tilesWrap {
-  padding: 0;
-  margin: 50px auto;
-  list-style: none;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,200");
+body {
+  font-family: Helvetica, san-serif;
+  background: -webkit-linear-gradient(
+    90deg,
+    #00aaee 10%,
+    #dd2476 90%
+  ); /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(
+    90deg,
+    #00aaee 10%,
+    #dd2476 90%
+  ); /* FF3.6+ */
+  background: -ms-linear-gradient(90deg, #00aaee 10%, #dd2476 90%); /* IE10 */
+  background: -o-linear-gradient(
+    90deg,
+    #00aaee 10%,
+    #dd2476 90%
+  ); /* Opera 11.10+ */
+  background: linear-gradient(90deg, #00aaee 10%, #dd2476 90%); /* W3C */
 }
-.tilesWrap li {
-  display: inline-block;
-  width: 20%;
-  min-width: 200px;
-  max-width: 230px;
-  padding: 80px 20px 40px;
-  position: relative;
-  vertical-align: top;
-  margin: 10px;
-  font-family: "helvetica", san-serif;
-  min-height: 25vh;
-  background: #262a2b;
-  border: 1px solid #252727;
-  text-align: left;
+.transition {
+  transition: 0.3s cubic-bezier(0.3, 0, 0, 1.3);
 }
-.tilesWrap li h2 {
-  font-size: 114px;
-  margin: 0;
-  position: absolute;
-  opacity: 0.2;
-  top: 50px;
-  right: 10px;
-  transition: all 0.3s ease-in-out;
-}
-.tilesWrap li h3 {
-  font-size: 16px;
-  color: #b7b7b7;
-  margin-bottom: 5px;
-}
-.tilesWrap li p {
-  font-size: 16px;
-  line-height: 18px;
-  color: #b7b7b7;
-  margin-top: 5px;
-}
-.tilesWrap li button {
-  background: transparent;
-  border: 1px solid #b7b7b7;
-  padding: 10px 20px;
-  color: #b7b7b7;
-  border-radius: 3px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-  transform: translateY(-40px);
-  opacity: 0;
-  cursor: pointer;
+.card {
+  background-color: #fff;
+  bottom: 0;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+  height: 300px;
+  left: 0;
+  margin: auto;
   overflow: hidden;
-}
-.tilesWrap li button:before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 120%;
-  background: #b7b7b7;
+  position: relative;
+  right: 0;
   top: 0;
-  opacity: 0;
-  left: -140px;
-  border-radius: 0 20px 20px 0;
-  z-index: -1;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
+  width: 300px;
 }
-.tilesWrap li:hover button {
-  transform: translateY(5px);
-  opacity: 1;
+.card:hover {
+  height: 450px;
+  width: 300px;
 }
-.tilesWrap li button:hover {
-  color: #262a2b;
+.card:hover .cta-container {
+  display: inline;
+  margin-top: 380px;
 }
-.tilesWrap li button:hover:before {
-  left: 0;
-  opacity: 1;
+.card:hover .card_circle {
+  background-size: cover;
+  border-radius: 0;
+  margin-top: -130px;
 }
-.tilesWrap li:hover h2 {
-  top: 0px;
-  opacity: 0.6;
+.card:hover h2 {
+  background: #3487f7;
+  color: #fff;
+  margin-top: 100px;
+  padding: 5px;
 }
-
-.tilesWrap li:before {
-  content: "";
+.card:hover h2 small {
+  color: #fff;
+}
+.card:hover p {
+  margin-top: 300px;
+}
+.card_circle {
+  background: url("http://lorempixel.com/400/200") no-repeat center bottom;
+  background-color: #3487f7;
+  background-size: cover;
+  border-radius: 50%;
+  height: 400px;
+  margin-left: -75px;
+  margin-top: -270px;
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  z-index: -1;
-  background: #fff;
-  transform: skew(2deg, 2deg);
+  width: 450px;
 }
-.tilesWrap li:after {
-  content: "";
+h2 {
+  color: #3487f7;
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  font-weight: 200;
+  margin-top: 150px;
   position: absolute;
-  width: 40%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(255, 255, 255, 0.02);
+  text-align: center;
+  width: 100%;
+  z-index: 9999;
 }
-.tilesWrap li:nth-child(1):before {
-  background: #c9ffbf;
-  background: -webkit-linear-gradient(to right, #ffafbd, #c9ffbf);
-  background: linear-gradient(to right, #ffafbd, #c9ffbf);
+p {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Raleway", sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  margin-top: 200px;
+  position: absolute;
+  text-align: center;
+  z-index: 9999;
 }
-.tilesWrap li:nth-child(2):before {
-  background: #f2709c;
-  background: -webkit-linear-gradient(to right, #ff9472, #f2709c);
-  background: linear-gradient(to right, #ff9472, #f2709c);
+.cta-container {
+  display: none;
+  margin-top: 320px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 9999;
 }
-.tilesWrap li:nth-child(3):before {
-  background: #c21500;
-  background: -webkit-linear-gradient(to right, #ffc500, #c21500);
-  background: white;
+.cta {
+  -moz-border-radius: 2px;
+  -moz-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  -webkit-border-radius: 2px;
+  -webkit-transition: 0.2s ease-out;
+  background-clip: padding-box;
+  border: 2px solid #3487f7;
+  border-radius: 2px;
+  color: #3487f7;
+  display: inline-block;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  height: 36px;
+  letter-spacing: 0.5px;
+  line-height: 36px;
+  margin-bottom: 15px;
+  padding: 0 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.2s ease-out;
 }
-.tilesWrap li:nth-child(4):before {
-  background: #fc354c;
-  background: -webkit-linear-gradient(to right, #0abfbc, #fc354c);
-  background: white;
+.cta:hover {
+  background-color: #3487f7;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #fff;
+  -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 </style>
