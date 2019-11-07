@@ -9,7 +9,7 @@
         <p>Nome fantasia: {{empresa.fancy_name}}</p>
         <p></p>
         <p>CNPJ: {{empresa.CNPJ}}</p>
-        <button>Perfil e Planejamento</button>
+        <button @click="irParaPerfil(empresa.id)">Perfil e Planejamento</button>
       </li>
     </ul>
   </div>-->
@@ -28,6 +28,16 @@
       </div>
     </div>
   </div>
+  <!-- <div>
+    <div class="card transition" v-for="(empresa, i) in empresas" :key="empresa.id">
+      <h2 class="transition">Awesome Headline</h2>
+      <p>Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla.</p>
+      <div class="cta-container transition">
+        <a href="#" @click="modal" class="cta">Call to action</a>
+      </div>
+      <div class="card_circle transition"></div>
+    </div>
+  </div> -->
 </template>
 
 <script>
@@ -66,6 +76,8 @@ export default {
         });
     },
     irParaPerfil(id) {
+      this.$router.push({ name: "perfil-empresa", params: { empresa: id } });
+
       console.log(id);
     },
 
