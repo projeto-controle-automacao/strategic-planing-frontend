@@ -16,14 +16,23 @@
 
   <div class="wrapper container">
     <div class="content row">
-      <div class="card col">
+      <div class="card col" @click="modal()">
         <div class="icon">
-          <i class="fas fa-edi" style="font-size:48px;"></i>
+          <i class="fa fa-plus-square" style="font-size:48px;color:white"></i>
         </div>
+        <p class="title">...</p>
       </div>
-      <div class="card col" v-for="(empresa, i) in empresas" :key="empresa.id">
+      <div
+        class="card col"
+        v-for="(empresa, i) in empresas"
+        :key="empresa.id"
+        @click="irParaPerfil(empresa.id)"
+      >
+        <div class="icon">
+          <i class="fa fa-gear" style="font-size:48px;color:white"></i>
+        </div>
         <p class="title">{{ empresa.company_name }}</p>
-        <p class="text">Nome fantasia: {{empresa.fancy_name}}</p>
+        <p class="text"> {{empresa.fancy_name}} </p>
         <p class="text">CNPJ: {{empresa.CNPJ}}</p>
       </div>
     </div>
@@ -37,7 +46,7 @@
       </div>
       <div class="card_circle transition"></div>
     </div>
-  </div> -->
+  </div>-->
 </template>
 
 <script>
@@ -84,7 +93,8 @@ export default {
     async modal() {
       const { value: formValues } = await this.$swal.fire({
         background: "#222",
-        confirmButtonColor: "green",
+        confirmButtonColor: "#4d50e9",
+        cancel: "red",
         title: "Cadastro de Empresa",
         confirmButtonText: "Cadastrar",
         showCancelButton: true,
@@ -116,7 +126,7 @@ export default {
               focusConfirm: false,
 
               background: "#222",
-              confirmButtonColor: "green",
+              confirmButtonColor: "#4d50e9",
               confirmButtonText: "Confirmar!",
               showCancelButton: true,
               html:
@@ -182,7 +192,7 @@ body {
   background-color: #2c303a;
   width: 100%;
   // height: 50px;
-  position: absolute;
+  position: center;
   bottom: 0;
   color: #888888;
   display: initial;
@@ -198,7 +208,7 @@ body {
 
   a {
     color: white;
-    margin: 0 5px;
+    margin: 0 3px;
     padding: 2px 3px;
     text-decoration: none;
     position: relative;
@@ -257,11 +267,12 @@ body {
 }
 
 .wrapper {
-  width: 100%;
+  width: 90vw;
   margin: 0 auto;
-  // height: 400px;
+  height: 90vh;
+  padding: 10px;
   background-color: #161616;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: relative;
   position: relative;
@@ -271,6 +282,7 @@ body {
 @media screen and (max-width: 767px) {
   .wrapper {
     //height: 8000px;
+    //display: block;
   }
 }
 
@@ -278,12 +290,12 @@ body {
   // max-width: 1024px;
   width: 100%;
   padding: 0 4%;
-  padding-top: 250px;
-  padding-bottom: 250px;
+  padding-top: 200px;
+  padding-bottom: 200px;
   margin: 0 auto;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 @media screen and (max-width: 767px) {
@@ -294,10 +306,10 @@ body {
 }
 
 .card {
-  width: 100px;
-  max-width: 300px;
-  min-width: 200px;
-  height: 200px;
+  width: 220px;
+  //max-width: 240px;
+  //min-width: 120px;
+  height: 220px;
   background-color: #292929;
   margin: 10px;
   border-radius: 10px;
@@ -306,7 +318,7 @@ body {
   font-size: 16px;
   transition: all 0.3s ease;
   position: relative;
-  display: inline;
+  display: inline-table;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -321,8 +333,8 @@ body {
   max-width: 80px;
   background: linear-gradient(
     90deg,
-    #ff7e7e 0%,
-    #ff4848 40%,
+    #7495c7 0%,
+    #4d50e9 40%,
     rgba(0, 0, 0, 0.28) 60%
   );
   border-radius: 100%;
@@ -364,26 +376,31 @@ body {
   margin: 0 auto;
   font-size: 13px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   color: white;
   font-weight: 200;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   opacity: 0;
   max-height: 0;
-  transition: all 0.3s ease;
+  //transition: all 0.3s ease;
 }
 
-.card:hover {
-  height: 210px;
-}
+// .card::-webkit-scrollbar {
+//   display: none;
+// }
+
+// .card:hover {
+//   overflow-y: scroll;
+//   //height: relative;
+// }
 
 .card:hover .info {
-  height: 90%;
+  height: 70%;
 }
 
 .card:hover .text {
   transition: all 0.3s ease;
-  opacity: 1;
+  opacity: 2;
   max-height: 40px;
 }
 
@@ -393,7 +410,7 @@ body {
 }
 
 .card:hover .icon i {
-  background: linear-gradient(90deg, #ff7e7e, #ff4848);
+  background: linear-gradient(90deg, #7495c7, #4d50e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 1;
