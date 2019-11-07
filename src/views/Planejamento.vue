@@ -388,6 +388,7 @@ export default {
 LEVEL 1. RESET STYLES
 =====
 */
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
 
 .field {
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
