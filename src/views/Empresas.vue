@@ -1,5 +1,5 @@
 <template>
-  <!-- <div>
+  <div>
     <h1>Minhas empresas</h1>
     <button @click="modal">Nova empresa</button>
     <ul class="tilesWrap">
@@ -12,8 +12,8 @@
         <button @click="irParaPerfil(empresa.id)">Perfil e Planejamento</button>
       </li>
     </ul>
-  </div>-->
-  <div>
+  </div>
+  <!-- <div>
     <div class="card transition" v-for="(empresa, i) in empresas" :key="empresa.id">
       <h2 class="transition">Awesome Headline</h2>
       <p>Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla.</p>
@@ -22,7 +22,7 @@
       </div>
       <div class="card_circle transition"></div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -155,6 +155,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,200");
 body {
   font-family: Helvetica, san-serif;
