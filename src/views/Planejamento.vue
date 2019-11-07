@@ -381,6 +381,8 @@ export default {
 </script>
 
 <style scoped>
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
 /*
 =====
 LEVEL 1. RESET STYLES
