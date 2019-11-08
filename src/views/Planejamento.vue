@@ -27,19 +27,24 @@
       </label>
     </div>
     <div>
-      <div>
-        <h2 @click="selecionar('visao')">Visao</h2>
-      </div>
       <div class="mahi_holder">
         <div class="container">
+          Consolidação da Visão
+          <input type="text" name v-model="visao" />
+          Consolidação da Missão
+          <input type="text" name v-model="missao" />
+          Consolidação dos valores
+          <input type="text" name :v-model="valores" />
+          <div>
+            <h2 @click="selecionar('visao')">Visão</h2>
+          </div>
           <div v-if="selecionado=='visao'">
-            <input type="text" name v-model="visao" />
             <div class="row">
-              <div class="col-6" v-for="(campo, i) in campos" :key="i">
+              <div class="col-6" v-for="(campo, i) in campos1" :key="i">
                 <label class="effect-1">Campo {{i+1}}</label>
                 <multiselect
-                  v-model="valores[i]"
-                  :options="campos[i]"
+                  v-model="valores1[i]"
+                  :options="campos1[i]"
                   :searchable="true"
                   :close-on-select="true"
                   :show-labels="false"
@@ -47,7 +52,27 @@
                 ></multiselect>
               </div>
             </div>
+            <button class="btn btn-success" @click="selecionar('')">Confirmar</button>
           </div>
+        </div>
+        <div>
+          <h2 @click="selecionar('missao')">Missão</h2>
+        </div>
+        <div v-if="selecionado=='missao'">
+          <div class="row">
+            <div class="col-6" v-for="(campo, i) in campos2" :key="i">
+              <label class="effect-1">Campo {{i+1}}</label>
+              <multiselect
+                v-model="valores2[i]"
+                :options="campos2[i]"
+                :searchable="true"
+                :close-on-select="true"
+                :show-labels="false"
+                placeholder="Selecione"
+              ></multiselect>
+            </div>
+          </div>
+          <button class="btn btn-success" @click="selecionar('')">Confirmar</button>
         </div>
       </div>
     </div>
@@ -69,37 +94,28 @@ export default {
       planejamento: "",
       duracao: ""
     },
-    campos: [],
-    valores: [],
-    selecionado: ""
+    campos1: [],
+    valores1: [],
+    campos2: [],
+    valores2: [],
+    selecionado: "",
+    valores: "",
   }),
-  mounted() {
+  async mounted() {
     this.token = localStorage.token;
-    this.buscarEmpresa();
-    this.buscarFrases();
+    await this.buscarEmpresa();
+    await this.buscarFrasesVisao();
+    await this.buscarFraseMissao();
   },
   computed: {
     visao() {
-      return this.valores.join(" ");
-    }
-  },
-  watch: {
-    "this.value1"() {
-      // if(this.value1 == null){
-      //   this.value1 = ""
-      // }
-      console.log(this.value1);
+      return this.valores1.join(" ");
+    },
+    missao() {
+      return this.valores2.join(" ");
     }
   },
   methods: {
-    checaNull(val) {
-      if (!val) {
-        val = "";
-      } else {
-        val += " ";
-      }
-      return val;
-    },
     buscarEmpresa() {
       let id = this.$route.params.empresa;
       Axios.get(
@@ -119,8 +135,8 @@ export default {
     onInput(val) {
       val = "";
     },
-    buscarFrases() {
-      Axios.get(`http://127.0.0.1:8000/api/v1/getByPillar/2`, {
+    async buscarFrasesVisao() {
+      await Axios.get(`http://127.0.0.1:8000/api/v1/getByPillar/2`, {
         headers: { Authorization: `Bearer ${this.token}` }
       })
         .then(res => {
@@ -133,14 +149,41 @@ export default {
             if (atu === ant) {
               aux.push(element.expression);
             } else {
-              this.campos.push(aux);
+              this.campos1.push(aux);
               aux = [];
               aux.push(element.expression);
             }
             ant = atu;
           });
-          this.campos.push(aux);
-          // console.log(this.campos);
+          this.campos1.push(aux);
+          // console.log(this.campos1);
+        })
+        .catch(err => {
+          console.log("error", "nao consegui buscar as empresa");
+        });
+    },
+    async buscarFraseMissao() {
+      await Axios.get(`http://127.0.0.1:8000/api/v1/getByPillar/1`, {
+        headers: { Authorization: `Bearer ${this.token}` }
+      })
+        .then(res => {
+          let ant = res.data[0].field_id;
+          let aux = [];
+          let atu;
+          // console.log(res.data);
+          res.data.forEach(element => {
+            atu = element.field_id;
+            if (atu === ant) {
+              aux.push(element.expression);
+            } else {
+              this.campos2.push(aux);
+              aux = [];
+              aux.push(element.expression);
+            }
+            ant = atu;
+          });
+          this.campos2.push(aux);
+          // console.log(this.campos1);
         })
         .catch(err => {
           console.log("error", "nao consegui buscar as empresa");
@@ -518,5 +561,9 @@ input[type="text"] {
 .effect-3:focus ~ .focus-border:after {
   width: 50%;
   transition: 0.4s;
+}
+input {
+  background-color: #5555;
+  color: #ccc !important;
 }
 </style>
