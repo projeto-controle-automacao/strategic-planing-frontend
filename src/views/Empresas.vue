@@ -1,19 +1,4 @@
 <template>
-  <!-- <div>
-    <h1>Minhas empresas</h1>
-    <button @click="modal">Nova empresa</button>
-    <ul class="tilesWrap">
-      <li v-for="(empresa, i) in empresas" :key="empresa.id">
-        <h2>0{{ i + 1 }}</h2>
-        <h3>Razão social: {{ empresa.company_name }}</h3>
-        <p>Nome fantasia: {{empresa.fancy_name}}</p>
-        <p></p>
-        <p>CNPJ: {{empresa.CNPJ}}</p>
-        <button @click="irParaPerfil(empresa.id)">Perfil e Planejamento</button>
-      </li>
-    </ul>
-  </div>-->
-
   <div class="wrapper container">
     <div class="content row">
       <div class="card col" @click="modal()">
@@ -32,21 +17,11 @@
           <i class="fa fa-gear" style="font-size:48px;color:white"></i>
         </div>
         <p class="title">{{ empresa.company_name }}</p>
-        <p class="text"> {{empresa.fancy_name}} </p>
+        <p class="text">{{empresa.fancy_name}}</p>
         <p class="text">CNPJ: {{empresa.CNPJ}}</p>
       </div>
     </div>
   </div>
-  <!-- <div>
-    <div class="card transition" v-for="(empresa, i) in empresas" :key="empresa.id">
-      <h2 class="transition">Awesome Headline</h2>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <div class="cta-container transition">
-        <a href="#" @click="modal" class="cta">Call to action</a>
-      </div>
-      <div class="card_circle transition"></div>
-    </div>
-  </div>-->
 </template>
 
 <script>
@@ -94,7 +69,7 @@ export default {
       const { value: formValues } = await this.$swal.fire({
         background: "#222",
         confirmButtonColor: "#4d50e9",
-        cancel: "red",
+        cancelButtonColor: "#a84141",
         title: "Cadastro de Empresa",
         confirmButtonText: "Cadastrar",
         showCancelButton: true,
@@ -230,7 +205,7 @@ body {
       position: absolute;
       width: 0;
       height: 0px;
-      background-color: #46b7a7;
+      background-color: #b74646;
       right: 0;
       bottom: 0;
       transition: all 0.3s 0.3s ease;
@@ -318,12 +293,13 @@ body {
   font-size: 16px;
   transition: all 0.3s ease;
   position: relative;
-  display: inline-table;
+  display: inline-block;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   cursor: pointer;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .icon {
@@ -389,10 +365,10 @@ body {
 //   display: none;
 // }
 
-// .card:hover {
-//   overflow-y: scroll;
-//   //height: relative;
-// }
+.card:hover {
+  // overflow-y: scroll;
+  height: auto;
+}
 
 .card:hover .info {
   height: 70%;
