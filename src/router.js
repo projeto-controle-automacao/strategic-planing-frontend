@@ -5,6 +5,7 @@ import Login from './views/Login.vue';
 import Home_usuario from './views/Home_usuario.vue';
 import Empresas from './views/Empresas.vue';
 import Perfil_empresa from './views/Perfil_empresa.vue';
+import Planejamento from './views/Planejamento.vue';
 import Conceitos from './views/Conceitos.vue';
 
 
@@ -38,6 +39,12 @@ export default new Router({
           path: 'perfil-empresa/:empresa',
           name: 'perfil-empresa',
           component: Perfil_empresa,
+          props: true,
+        },
+        {
+          path: 'empresa/:empresa/planejamento/:planejamento',
+          name: 'planejamento',
+          component: Planejamento,
           props: true,
         },
         {

@@ -5,7 +5,7 @@
         <div class="icon">
           <i class="fa fa-plus-square" style="font-size:48px;color:white"></i>
         </div>
-        <p class="title">...</p>
+        <p class="title">Nova Empresa</p>
       </div>
       <div
         class="card col"
