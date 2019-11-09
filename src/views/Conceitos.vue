@@ -72,7 +72,7 @@
               ></multiselect>
             </div>
           </div>
-          <button class="btn btn-success" @click="selecionar('')">Confirmar</button>
+          <button class="btn btn-success" @click="salvarConceitos">Confirmar</button>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ export default {
     campos2: [],
     valores2: [],
     selecionado: "",
-    valores: "",
+    valores: ""
   }),
   async mounted() {
     this.token = localStorage.token;
@@ -190,11 +190,43 @@ export default {
         });
     },
     selecionar(campo) {
-      if(this.selecionado === campo){
+      if (this.selecionado === campo) {
         this.selecionado = "";
       } else {
         this.selecionado = campo;
       }
+    },
+    salvarConceitos() {
+      let id = this.$route.params.empresa;
+      Axios.post(
+        `http://127.0.0.1:8000/api/v1/companies/${id}/company-profile`,
+        {
+          mission: this.missao,
+          vision: this.visao,
+          values: 'valores',
+          strategic_plan: this.form.planejamento,
+          deadline: this.form.duracao
+        },
+        {
+          headers: { Authorization: `Bearer ${this.token}` }
+        }
+      )
+        .then(res => {
+            this.$notify({
+              group: "foo",
+              title: "Sucesso!",
+              text: "Usuário Cadastrado",
+              type: "success"
+            });
+        })
+        .catch(err => {
+          this.$notify({
+            group: "foo",
+            title: "Erro no cadastro",
+            text: "Não foi possível cadastrar o usuário",
+            type: "error"
+          });
+        });
     }
   }
 };

@@ -1,29 +1,29 @@
 <template>
 <div>
-  <div class="row">
+  <div class="conteiner">
     <div class="flip">
       <div class="front" :style="{ backgroundImage: 'url(' + require('@/assets/bg1.png') + ')' }">
         <h1 class="text-shadow">PLANEJAMENTO ESTRATÉGICO</h1>
       </div>
       <div class="back">
         <h2>Planejamento estratégico</h2>
-        <p>Tenha sua empresa na palma da sua mão. Com o nossa ferramenta de planejamento estratégico saiba onde concentrar forças e fazer sua empresa crescer</p>
+        <p>Tenha sua empresa na palma da mão. Com a nossa ferramenta de planejamento estratégico, saiba onde concentrar forças e fazer sua empresa crescer</p>
         <button @click="acessarPlanejamento" class="brk-btn"> Acessar plataforma </button>
       </div>
     </div>
 
     <div class="flip">
       <div class="front" :style="{ backgroundImage: 'url(' + require('@/assets/bg2.jpg') + ')' }">
-        <h1 class="text-shadow">MOUNTAIN</h1>
+        <h1 class="text-shadow">Controle de Agronegócio</h1>
       </div>
       <div class="back">
         <h2>Angular</h2>
-        <p>Good tools make application development quicker and easier to maintain than if you did everyth1ng by hand..</p>
+        <p>Tenha sua produção na palma da mão. Com a nossa ferramenta de planejamento de agronegócio, saiba onde concentrar forças e fazer sua produção crescer</p>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <!--<div class="row">
     <div class="flip">
         <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
           <h1 class="text-shadow">LAKE</h1>
@@ -41,7 +41,7 @@
           <h2>Angular</h2>
           <p>Good tools make application development quicker and easier to maintain than if you did everyth1ng by hand..</p>
         </div>
-    </div>
+    </div> -->
   </div>
 
 </div>

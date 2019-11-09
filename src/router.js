@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Inicio from './views/Inicio'
 import Login from './views/Login.vue';
-import Home from './views/Home.vue';
+import Home_usuario from './views/Home_usuario.vue';
 import Empresas from './views/Empresas.vue';
+import Perfil_empresa from './views/Perfil_empresa.vue';
 import Conceitos from './views/Conceitos.vue';
 
-import Inicio from './views/Inicio'
+
 Vue.use(Router);
 
 export default new Router({
@@ -23,29 +25,28 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/home',
-      name: 'home',
-      component: Home,
+      path: '/home_usuario',
+      name: 'home_usuario',
+      component: Home_usuario,
       children: [
         {
           path: 'empresas',
           name: 'empresas',
-          component: Empresas
+          component: Empresas,
         },
         {
           path: 'perfil-empresa/:empresa',
           name: 'perfil-empresa',
+          component: Perfil_empresa,
+          props: true,
+        },
+        {
+          path: 'conceitos/:empresa',
+          name: 'conceitos',
           component: Conceitos,
-          props: true
-        }
-
-        // {
-        //   // UserPosts will be rendered inside User's <router-view>
-        //   // when /user/:id/posts is matched
-        //   path: 'posts',
-        //   component: UserPosts
-        // }
-      ]
+          props: true,
+        },
+      ],
     },
   ],
 });

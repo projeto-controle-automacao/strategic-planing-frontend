@@ -85,7 +85,7 @@ export default {
       })
         .then(res => {
           localStorage.setItem("token", res.data.token);
-          this.$router.push({ name: "home" });
+          this.$router.push({ name: "home_usuario" });
         })
         .catch(err => {
           this.$notify({

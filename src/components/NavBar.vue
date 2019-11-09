@@ -60,21 +60,21 @@ a{
 
 <script>
 export default {
-  name: "navbar",
+  name: 'navbar',
 
   methods: {
-    toHome(){
-      this.$router.push({ name: "home" });
+    toHome() {
+      this.$router.push({ name: 'home_usuario' });
     },
     toEmpresas() {
-      this.$router.push({ name: "empresas" });
+      this.$router.push({ name: 'empresas' });
     },
     toLogin() {
-      this.$router.push({ name: "inicio" })
+      this.$router.push({ name: 'inicio' });
     },
     toServicos() {
-      this.$router.push({ name: "home" })
-    }
-  }
-}
+      this.$router.push({ name: 'home_usuario' });
+    },
+  },
+};
 </script>
