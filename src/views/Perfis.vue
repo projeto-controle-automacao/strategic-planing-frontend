@@ -12,7 +12,7 @@
         :key="perfil.id"
         @click="irParaPlanejamento()"
       >
-        <p class="text">{{ perfil.mission }}</p>
+        <p class="text"> {{perfil.mission}} </p>
         <p class="text"> {{perfil.vision}} </p>
         <p class="text">{{perfil.values}}</p>
       </div>

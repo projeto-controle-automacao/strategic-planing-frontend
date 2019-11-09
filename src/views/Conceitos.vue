@@ -190,7 +190,11 @@ export default {
         });
     },
     selecionar(campo) {
-      this.selecionado = campo;
+      if(this.selecionado === campo){
+        this.selecionado = "";
+      } else {
+        this.selecionado = campo;
+      }
     }
   }
 };

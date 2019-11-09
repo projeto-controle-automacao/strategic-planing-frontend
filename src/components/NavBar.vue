@@ -8,17 +8,11 @@
       <a @click="toEmpresas">Empresas</a>
     </li>
     <li>
-      <a @click="toLogin">Login</a>
-    </li>
-    <li>
       <a @click="toServicos">Serviços</a>
     </li>
-    <!-- <li>
-      <a href="#">Services</a>
-    </li>
     <li>
-      <a href="#">Contact</a>
-    </li> -->
+      <a @click="toLogin">Sair</a>
+    </li>
   </ul>
 </nav>
 </template>
@@ -76,10 +70,10 @@ export default {
       this.$router.push({ name: "empresas" });
     },
     toLogin() {
-      this.$router.push({ name: "login" })
+      this.$router.push({ name: "inicio" })
     },
     toServicos() {
-      this.$router.push({ name: "seletor-plataforma" })
+      this.$router.push({ name: "home" })
     }
   }
 }

@@ -3,9 +3,9 @@ import Router from 'vue-router';
 import Login from './views/Login.vue';
 import Home from './views/Home.vue';
 import Empresas from './views/Empresas.vue';
-import Planejamento from './views/Planejamento.vue';
+import Conceitos from './views/Conceitos.vue';
 
-import PlatformSelection from './views/PlatformSelection'
+import Inicio from './views/Inicio'
 Vue.use(Router);
 
 export default new Router({
@@ -14,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'seletor-plataforma',
-      component: PlatformSelection,
+      name: 'inicio',
+      component: Inicio,
     },
     {
       path: '/login',
@@ -35,7 +35,7 @@ export default new Router({
         {
           path: 'perfil-empresa/:empresa',
           name: 'perfil-empresa',
-          component: Planejamento,
+          component: Conceitos,
           props: true
         }
 
