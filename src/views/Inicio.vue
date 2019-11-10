@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="flip">
+      <!-- <div class="flip">
         <div class="front" :style="{ backgroundImage: 'url(' + require('@/assets/bg2.jpg') + ')' }">
           <h1 class="text-shadow">Controle de Agronegócio</h1>
         </div>
@@ -20,7 +20,7 @@
           <h2>Angular</h2>
           <p>Tenha sua produção na palma da mão. Com a nossa ferramenta de planejamento de agronegócio, saiba onde concentrar forças e fazer sua produção crescer</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

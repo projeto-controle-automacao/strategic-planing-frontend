@@ -1,6 +1,6 @@
 <template>
   <div class="grid-layout">
-    <div class="card grid-item-1" @click="modal()">
+    <div class="card grid-item-1" @click="irParaCriacaoPlanejamento(id_empresa)">
       <div class="icon">
         <i class="fa fa-plus-square" style="font-size:48px;color:white"></i>
       </div>
@@ -49,7 +49,7 @@ export default {
       )
         .then(res => {
           this.planejamentos = res.data;
-          console.log(this.planejamentos);
+          //console.log(this.planejamentos);
         })
         .catch(err => {
           console.log("error", "nao consegui buscar os perfis");
@@ -62,6 +62,12 @@ export default {
         params: { empresa: empresa, planejamento: planejamento }
       });
       //console.log();
+    },
+    irParaCriacaoPlanejamento(empresa) {
+      this.$router.push({
+        name: "conceitos_criacao",
+        params: { empresa: empresa }
+      });
     }
   }
 };

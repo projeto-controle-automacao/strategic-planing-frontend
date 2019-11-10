@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="grid-layout-2">
+      <div class="card grid-item-1">
+        <p class="title">Horizonte</p>
+        <p class="text"> {{conceitos.horizonte}} </p>
+      </div>
+      <div class="card grid-item-2">
+        <p class="title">Duração</p>
+        <p class="text"> {{conceitos.duracao}} </p>
+      </div>
+    </div>
     <div class="grid-layout">
       <div class="card grid-item-1">
         <p class="title">Missão</p>
@@ -14,6 +24,8 @@
         <p class="text">{{ conceitos.valores }}</p>
       </div>
     </div>
+    <button class="brk-btn" @click="editarConceitos(id_empresa, id_planejamento)"> Editar </button>
+    <button class="brk-btn"> Analise SWOT</button>
   </div>
 </template>>
 
@@ -25,6 +37,8 @@ export default {
   },
   data: () => ({
     token: "",
+    id_empresa: '',
+    id_planejamento: '',
     conceitos: {
       horizonte: "",
       duracao: "",
@@ -41,10 +55,10 @@ export default {
   },
   methods: {
     async buscarPerfis() {
-      console.log(this.$route.params);
+      //console.log(this.$route.params);
       let id_empresa = this.$route.params.empresa;
       let id_planejamento = this.$route.params.planejamento;
-      console.log(id_empresa, id_planejamento);
+      //console.log(id_empresa, id_planejamento);
       await Axios.get(
         `http://127.0.0.1:8000/api/v1/companies/${id_empresa}/company-profile/${id_planejamento}`,
         {
@@ -52,7 +66,9 @@ export default {
         }
       )
         .then(res => {
-          console.log(res.data.perfil);
+          //console.log(res.data.perfil);
+          this.id_empresa = res.data.perfil.company_id;
+          this.id_planejamento = res.data.perfil.id;
           this.conceitos.duracao = res.data.perfil.deadline;
           this.conceitos.missao = res.data.perfil.mission;
           this.conceitos.visao = res.data.perfil.vision;
@@ -64,10 +80,8 @@ export default {
         });
     },
 
-    irParaConceitos(id) {
-      this.$router.push({ name: "conceitos", params: { planejamentos: id } });
-
-      console.log(id);
+    editarConceitos(id_empresa, id_planejamento) {
+      this.$router.push({ name: "conceitos_edicao", params: { empresa: id_empresa, planejamentos: id_planejamento } });
     }
   }
 };
@@ -95,6 +109,16 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+  grid-gap: 10px;
+  grid-auto-rows: minmax(200px, auto);
+  grid-auto-flow: dense;
+  padding: 10px;
+}
+
+.grid-layout-2 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(50%, auto));
   grid-gap: 10px;
   grid-auto-rows: minmax(200px, auto);
   grid-auto-flow: dense;
@@ -168,4 +192,74 @@ body {
   letter-spacing: 1px;
   max-height: auto;
 }
+
+// body {
+//   display: flex;
+//   flex-direction: column;
+//   height: 93vh;
+//   justify-content: center;
+//   align-items: center;
+//   background: #222;
+//   color: #eee;
+//   font-family: "Dosis", sans-serif;
+// }
+
+.underlined-a {
+  text-decoration: none;
+  color: aqua;
+  padding-bottom: 0.15em;
+  box-sizing: border-box;
+  box-shadow: inset 0 -0.2em 0 aqua;
+  transition: 0.2s;
+  &:hover {
+    color: #222;
+    box-shadow: inset 0 -2em 0 aqua;
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+}
+
+.brk-btn {
+  position: relative;
+  background: none;
+  color: aqua;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0.2em solid aqua;
+  padding: 0.5em 1em;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    right: 20%;
+    top: -0.21em;
+    transform: skewX(-45deg);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: #222;
+    height: 0.3em;
+    left: 20%;
+    bottom: -0.25em;
+    transform: skewX(45deg);
+    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  &:hover {
+    &::before {
+      right: 80%;
+    }
+    &::after {
+      left: 80%;
+    }
+  }
+}
+
 </style>
