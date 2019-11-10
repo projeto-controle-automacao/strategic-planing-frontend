@@ -1,9 +1,9 @@
 <template>
   <nav>
   <ul>
-    <li>
+    <!-- <li>
       <a @click="toHome">Inicio</a>
-    </li>
+    </li> -->
     <li>
       <a @click="toEmpresas">Empresas</a>
     </li>
@@ -17,10 +17,31 @@
 </nav>
 </template>
 
+<script>
+export default {
+  name: 'navbar',
+
+  methods: {
+    // toHome() {
+    //   this.$router.push({ name: 'home_usuario' });
+    // },
+    toEmpresas() {
+      this.$router.push({ name: 'empresas' });
+    },
+    toLogin() {
+      this.$router.push({ name: 'inicio' });
+    },
+    toServicos() {
+      this.$router.push({ name: 'home_usuario' });
+    },
+  },
+};
+</script>
+
 <style scoped>
 nav {
   max-width: 960px;
-  mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+  mask-image: linear-gradient(90deg, rgba(81, 160, 235, 0) 0%, #5963b9 25%, #3d4a85 75%, rgba(36, 20, 187, 0) 100%);
   margin: 0 auto;
   /* padding: 20px 0; */
 }
@@ -39,7 +60,7 @@ nav ul li a {
   padding: 18px;
   font-family: "Open Sans";
   text-transform:uppercase;
-  color: rgba(255, 255, 255, 1);
+  color: #d8d8d8;
   font-size: 18px;
   text-decoration: none;
   display: block;
@@ -56,25 +77,3 @@ a{
 }
 
 </style>
-
-
-<script>
-export default {
-  name: 'navbar',
-
-  methods: {
-    toHome() {
-      this.$router.push({ name: 'home_usuario' });
-    },
-    toEmpresas() {
-      this.$router.push({ name: 'empresas' });
-    },
-    toLogin() {
-      this.$router.push({ name: 'inicio' });
-    },
-    toServicos() {
-      this.$router.push({ name: 'home_usuario' });
-    },
-  },
-};
-</script>

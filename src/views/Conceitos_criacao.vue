@@ -203,7 +203,7 @@ export default {
         {
           mission: this.missao,
           vision: this.visao,
-          values: 'valores',
+          values: "valores",
           strategic_plan: this.form.planejamento,
           deadline: this.form.duracao
         },
@@ -212,12 +212,12 @@ export default {
         }
       )
         .then(res => {
-            this.$notify({
-              group: "foo",
-              title: "Sucesso!",
-              text: "Usuário Cadastrado",
-              type: "success"
-            });
+          this.$notify({
+            group: "foo",
+            title: "Sucesso!",
+            text: "Usuário Cadastrado",
+            type: "success"
+          });
         })
         .catch(err => {
           this.$notify({

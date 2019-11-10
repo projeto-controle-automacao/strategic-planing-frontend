@@ -6,7 +6,8 @@ import Home_usuario from './views/Home_usuario.vue';
 import Empresas from './views/Empresas.vue';
 import Perfil_empresa from './views/Perfil_empresa.vue';
 import Planejamento from './views/Planejamento.vue';
-import Conceitos from './views/Conceitos.vue';
+import Conceitos_criacao from './views/Conceitos_criacao.vue';
+import Conceitos_edicao from './views/Conceitos_edicao.vue';
 
 
 Vue.use(Router);
@@ -48,9 +49,15 @@ export default new Router({
           props: true,
         },
         {
-          path: 'conceitos/:empresa',
-          name: 'conceitos',
-          component: Conceitos,
+          path: 'conceitos_criacao/:empresa',
+          name: 'conceitos_criacao',
+          component: Conceitos_criacao,
+          props: true,
+        },
+        {
+          path: 'conceitos_edicao/:empresa/planejamento/:planejamento',
+          name: 'conceitos_edicao',
+          component: Conceitos_edicao,
           props: true,
         },
       ],

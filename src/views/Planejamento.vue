@@ -1,20 +1,17 @@
 <template>
   <div>
-    <div class="wrapper">
-      <div class="box">
-        <div class="content">
-              <p> {{ conceitos.missao }} </p>
-        </div>
+    <div class="grid-layout">
+      <div class="card grid-item-1">
+        <p class="title">Missão</p>
+        <p class="text">{{ conceitos.missao }}</p>
       </div>
-      <div class="box">
-        <div class="content">
-              <p> {{ conceitos.visao }} </p>
-        </div>
+      <div class="card grid-item-1">
+        <p class="title">Visão</p>
+        <p class="text">{{ conceitos.visao }}</p>
       </div>
-      <div class="box">
-        <div class="content">
-              <p> {{ conceitos.valores }} </p>
-        </div>
+      <div class="card grid-item-1">
+        <p class="title">Valores</p>
+        <p class="text">{{ conceitos.valores }}</p>
       </div>
     </div>
   </div>
@@ -29,13 +26,13 @@ export default {
   data: () => ({
     token: "",
     conceitos: {
-        horizonte: '',
-        duracao: '',
-        missao: '',
-        visao: '',
-        valores: '',
+      horizonte: "",
+      duracao: "",
+      missao: "",
+      visao: "",
+      valores: ""
     },
-    swot: [],
+    swot: []
   }),
 
   mounted() {
@@ -44,7 +41,7 @@ export default {
   },
   methods: {
     async buscarPerfis() {
-        console.log(this.$route.params);
+      console.log(this.$route.params);
       let id_empresa = this.$route.params.empresa;
       let id_planejamento = this.$route.params.planejamento;
       console.log(id_empresa, id_planejamento);
@@ -55,7 +52,7 @@ export default {
         }
       )
         .then(res => {
-        console.log(res.data.perfil);
+          console.log(res.data.perfil);
           this.conceitos.duracao = res.data.perfil.deadline;
           this.conceitos.missao = res.data.perfil.mission;
           this.conceitos.visao = res.data.perfil.vision;
@@ -71,272 +68,104 @@ export default {
       this.$router.push({ name: "conceitos", params: { planejamentos: id } });
 
       console.log(id);
-    },
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import url(https://fonts.googleapis.com/css?family=Electrolize);
+// organização containers
+@import url("https://fonts.googleapis.com/css?family=Cabin:400,700&subset=latin-ext");
+///// Variables
+$body-bgc: rgb(35, 111, 197);
+$card-bgc: #616161;
+$card-color: rgb(255, 255, 255);
+* {
+  margin: 10px;
+  //padding: 0;
+  box-sizing: border-box;
+}
 
-// settings
-$text-color: #ffb902;
-$line-color: #ffb902;
-$line-size: 7;
-
-// general
 body {
-  font-family: "Electrolize", sans-serif;
-  background: #070707;
-  overflow: hidden;
+  background-color: $body-bgc;
+  padding: 1rem;
 }
 
-// magic wrapper
-.wrapper {
-  // @include translateCenter;
-  width: 100%;
-  text-align: center;
-  display: table;
-}
-
-//
-//  Corners mixin (MAGIC BE HERE!)
-//
-@mixin line-corners(
-  $line-color: cyan,
-  $line-size: 7,
-  $line-type: out,
-  $line-distance: 20
-) {
-  position: absolute;
-  width: 100%;
-
-  transition-duration: 0.3s;
-
-  // arrows
-  &:before,
-  &:after {
-    content: "";
-
-    position: absolute;
-
-    width: $line-size + px;
-    height: $line-size + px;
-
-    border-color: $line-color;
-    border-style: solid;
-
-    transition-duration: 0.3s;
-    transform: translateZ(0);
-  }
-
-  // top corners
-  &.top {
-    &:before {
-      border-width: 1px 0 0 1px;
-    }
-    &:after {
-      border-width: 1px 1px 0 0;
-    }
-  }
-
-  // bottom corners
-  &.bottom {
-    &:before {
-      border-width: 0 0 1px 1px;
-    }
-    &:after {
-      border-width: 0 1px 1px 0;
-    }
-  }
-
-  @if $line-type == out {
-    &:before {
-      left: 0;
-    }
-    &:after {
-      right: 0;
-    }
-    &.top {
-      top: 0;
-    }
-    &.bottom {
-      bottom: $line-size + px;
-    }
-  }
-
-  @if $line-type == in {
-    &:before {
-      left: $line-distance + px;
-    }
-    &:after {
-      right: $line-distance + px;
-    }
-    &.top {
-      top: $line-distance + px;
-    }
-    &.bottom {
-      bottom: ($line-distance + $line-size) + px;
-    }
-  }
-}
-
-@mixin line-corners-hover($line-size: 7, $line-type: out, $line-distance: 20) {
-  @if $line-type == out {
-    &:before {
-      left: 0;
-    }
-    &:after {
-      right: 0;
-    }
-    &.top {
-      top: 0;
-    }
-    &.bottom {
-      bottom: $line-size + px;
-    }
-  }
-
-  @if $line-type == in {
-    &:before {
-      left: $line-distance + px;
-    }
-    &:after {
-      right: $line-distance + px;
-    }
-    &.top {
-      top: $line-distance + px;
-    }
-    &.bottom {
-      bottom: ($line-distance + $line-size) + px;
-    }
-  }
-}
-
-// style: borders out (edge)
-@mixin line-corners-out($line-color: cyan, $line-size: 7) {
-  .corners {
-    @include line-corners($line-color, $line-size, out);
-  }
-  &:hover {
-    .corners {
-      @include line-corners-hover($line-size, in);
-    }
-  }
-}
-
-// style: borders in
-@mixin line-corners-in($line-color: cyan, $line-size: 7) {
-  .corners {
-    @include line-corners($line-color, $line-size, in);
-  }
-  &:hover {
-    .corners {
-      @include line-corners-hover($line-size, out);
-    }
-  }
-}
-//
-// @end: Corners mixin
-//
-
-//
-// magic buttons
-//
-.bttn {
-  display: inline-block;
-  vertical-align: middle;
+.grid-layout {
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, auto));
+  grid-gap: 10px;
+  grid-auto-rows: minmax(200px, auto);
+  grid-auto-flow: dense;
+  padding: 10px;
+}
 
+.grid-item {
+  padding: 1rem;
+  display: flexbox;
+  //position: relative;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #929796;
+  background-color: rgb(151, 140, 140);
+  border-radius: 5px;
+  &:nth-child(odd) {
+    background-color: #424242;
+  }
+}
+
+.span-2 {
+  grid-column-end: span 2;
+  grid-row-end: span 2;
+}
+
+.span-3 {
+  grid-column-end: span 3;
+  grid-row-end: span 4;
+}
+
+/// estilo dos cards
+.card {
+  //max-width: 500px;
+  background-color: #1d1c1c;
+  min-width: 500px;
+  height: auto;
   margin: 20px;
-
-  // text
-  span {
-    display: block;
-    padding: 30px;
-
-    font-size: 30px;
-    color: $text-color;
-    text-transform: uppercase;
-
-    transition: all 0.3s ease-out;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  // include corners
-  &.out {
-    @include line-corners-out(cyan);
-  }
-
-  &.in {
-    @include line-corners-in($line-color);
-  }
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(31, 30, 30, 0.24);
+  border: 2px solid rgba(65, 61, 61, 0.12);
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.bttn {
-  //opacity: 0;
-
-  //will-change: transform, opacity;
-  //animation: fadeIn 0.6s 0.5s forwards ease-out;
-
-  // cyan theme
-  &.cyan {
-    $theme-color: cyan;
-    span {
-      color: $theme-color;
-    }
-    .corners {
-      &:after,
-      &:before {
-        border-color: $theme-color;
-      }
-    }
-  }
+.card h1 {
+  color: rgb(35, 111, 197);
+  size: auto;
 }
 
-//
-//  magic box
-//
-
-.box {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-
-  max-width: 20%;
-
-  .content {
-    margin: 20px;
-    padding: 20px;
-
-    //background: #131313;
-    border: 1px dashed rgba(0, 255, 255, 0.5);
-
-    color: cyan;
-    font-size: 14px;
-    line-height: 1.3;
-  }
-
-  // include corners
-  @include line-corners-out(cyan);
+.card .title {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  margin-top: 30px;
+  color: rgb(35, 111, 197);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
-//
-//  Animations
-//
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(50%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
+.card .text {
+  margin: 0 auto;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+  font-weight: 200;
+  letter-spacing: 1px;
+  max-height: auto;
 }
 </style>
