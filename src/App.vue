@@ -8,7 +8,7 @@
 <style lang="scss">
 
 #app {
-  background: #222;
+  background: rgb(212, 209, 209);
   font-family: 'Roboto Mono';
   // padding: 1em;
   box-sizing: border-box;

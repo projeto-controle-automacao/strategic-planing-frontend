@@ -27,7 +27,7 @@
     <button class="brk-btn" @click="editarConceitos(id_empresa, id_planejamento)"> Editar </button>
     <button class="brk-btn"> Analise SWOT</button>
   </div>
-</template>>
+</template>
 
 <script>
 import Axios from "axios";
@@ -153,7 +153,7 @@ body {
 /// estilo dos cards
 .card {
   //max-width: 500px;
-  background-color: #1d1c1c;
+  background-color: rgb(150, 165, 175);
   min-width: 500px;
   height: auto;
   margin: 20px;
@@ -187,33 +187,22 @@ body {
   font-size: 14px;
   text-align: center;
   margin-top: 10px;
-  color: white;
+  color: black;
   font-weight: 200;
   letter-spacing: 1px;
   max-height: auto;
 }
-
-// body {
-//   display: flex;
-//   flex-direction: column;
-//   height: 93vh;
-//   justify-content: center;
-//   align-items: center;
-//   background: #222;
-//   color: #eee;
-//   font-family: "Dosis", sans-serif;
-// }
 
 .underlined-a {
   text-decoration: none;
   color: aqua;
   padding-bottom: 0.15em;
   box-sizing: border-box;
-  box-shadow: inset 0 -0.2em 0 aqua;
+  box-shadow: inset 0 -0.2em 0 rgb(47, 64, 161);
   transition: 0.2s;
   &:hover {
     color: #222;
-    box-shadow: inset 0 -2em 0 aqua;
+    box-shadow: inset 0 -2em 0 rgb(47, 64, 161);
     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
   }
 }
@@ -221,17 +210,17 @@ body {
 .brk-btn {
   position: relative;
   background: none;
-  color: aqua;
+  color: rgb(47, 64, 161);
   text-transform: uppercase;
   text-decoration: none;
-  border: 0.2em solid aqua;
+  border: 0.2em solid rgb(47, 64, 161);
   padding: 0.5em 1em;
   &::before {
     content: "";
     display: block;
     position: absolute;
     width: 10%;
-    background: #222;
+    background: rgb(212, 209, 209);
     height: 0.3em;
     right: 20%;
     top: -0.21em;
@@ -244,7 +233,7 @@ body {
     display: block;
     position: absolute;
     width: 10%;
-    background: #222;
+    background: rgb(212, 209, 209);
     height: 0.3em;
     left: 20%;
     bottom: -0.25em;

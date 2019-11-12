@@ -45,13 +45,14 @@ export default {
 
 body {
   color: #555;
-  background: #222;
+  background: rgb(212, 209, 209);
   text-align: center;
   font-family: "Roboto Mono";
   padding: 1em;
 }
 
 h1 {
+  color: black;
   font-size: 2.5em;
 }
 
@@ -123,18 +124,18 @@ h1 {
   > .front,
   > .back {
     display: block;
-    color: white;
+    color:  black;
     width: inherit;
     background-size: cover !important;
     background-position: center !important;
     height: 320px;
     padding: 1em 2em;
-    background: #313131;
+    background: rgb(150, 165, 175);
     border-radius: 10px;
     p {
       font-size: 1.18rem;
       line-height: 160%;
-      color: #999;
+      color: black;
     }
   }
 }
@@ -155,17 +156,17 @@ h1 {
 .brk-btn {
   position: relative;
   background: none;
-  color: aqua;
+  color: rgb(47, 64, 161);
   text-transform: uppercase;
   text-decoration: none;
-  border: 0.2em solid aqua;
+  border: 0.2em solid rgb(47, 64, 161);
   padding: 0.5em 1em;
   &::before {
     content: "";
     display: block;
     position: absolute;
     width: 10%;
-    background: #313131;
+    background: rgb(150, 165, 175);
     height: 0.3em;
     right: 20%;
     top: -0.21em;
@@ -178,7 +179,7 @@ h1 {
     display: block;
     position: absolute;
     width: 10%;
-    background: #313131;
+    background: rgb(150, 165, 175);
     height: 0.3em;
     left: 20%;
     bottom: -0.25em;

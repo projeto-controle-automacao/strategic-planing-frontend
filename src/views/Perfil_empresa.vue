@@ -2,7 +2,7 @@
   <div class="grid-layout">
     <div class="card grid-item-1" @click="irParaCriacaoPlanejamento(id_empresa)">
       <div class="icon">
-        <i class="fa fa-plus-square" style="font-size:48px;color:white"></i>
+        <i class="fa fa-plus-square" style="font-size:48px;color:black"></i>
       </div>
       <p class="title">Novo Plano</p>
     </div>
@@ -13,7 +13,7 @@
       @click="irParaPlanejamento(id_empresa, planejamento.id)"
     >
       <div class="icon">
-        <i class="fa fa-cubes" style="font-size:48px;color:white"></i>
+        <i class="fa fa-cubes" style="font-size:48px;color:black"></i>
       </div>
       <p class="title">Plano {{ i + 1 }}</p>
       <p class="text">Duração {{ planejamento.deadline }}</p>
@@ -77,7 +77,7 @@ export default {
 body {
   display: inline;
   //width: 100%;
-  background-color: #1d1d1d;
+  //background-color: #1d1d1d;
   margin: 10px;
   font-family: helvetica;
   align-self: center;
@@ -123,7 +123,7 @@ body {
   //max-width: 240px;
   //min-width: 120px;
   //height: 220px;
-  background-color: #292929;
+  background-color: rgb(150, 165, 175);
   margin: 20px;
   border-radius: 10px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
@@ -155,7 +155,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
   transition: all 0.8s ease;
   background-position: 0px;
   background-size: 200px;
@@ -179,7 +179,7 @@ body {
   margin: 0;
   text-align: center;
   margin-top: 30px;
-  color: white;
+  color: black;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -191,7 +191,7 @@ body {
   font-size: 13px;
   text-align: center;
   margin-top: 10px;
-  color: white;
+  color: black;
   font-weight: 200;
   letter-spacing: 1px;
   opacity: 0;
@@ -215,7 +215,7 @@ body {
 }
 
 .card:hover .icon i {
-  background: linear-gradient(90deg, #7495c7, #4d50e9);
+  background: linear-gradient(90deg, black, #4d50e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 1;

@@ -43,6 +43,7 @@ nav {
   max-width: 960px;
   mask-image: linear-gradient(90deg, rgba(81, 160, 235, 0) 0%, #5963b9 25%, #3d4a85 75%, rgba(36, 20, 187, 0) 100%);
   margin: 0 auto;
+  background: rgb(150, 165, 175);
   /* padding: 20px 0; */
 }
 
@@ -60,7 +61,7 @@ nav ul li a {
   padding: 18px;
   font-family: "Open Sans";
   text-transform:uppercase;
-  color: #d8d8d8;
+  color: black;
   font-size: 18px;
   text-decoration: none;
   display: block;
@@ -69,7 +70,7 @@ nav ul li a {
 nav ul li a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
   background: rgba(255, 255, 255, 0.1);
-  color: rgba(50, 255, 255, 0.9);
+  color: rgb(47, 64, 161);
 }
 
 a{

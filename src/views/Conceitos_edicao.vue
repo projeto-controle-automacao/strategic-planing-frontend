@@ -9,8 +9,8 @@
           placeholder="Explique motivo do planejamento"
           required
         />
-        <span class="a-field__label-wrap">
-          <span class="a-field__label">Planejamento</span>
+        <span class="a-field__label-wrap text:black">
+          <span class="a-field__label" style="color:black"> Horizonte </span>
         </span>
       </label>
       <label class="field a-field a-field_a1">
@@ -22,42 +22,47 @@
           required
         />
         <span class="a-field__label-wrap">
-          <span class="a-field__label">Duração</span>
+          <span class="a-field__label" style="color:black"> Duração </span>
         </span>
       </label>
     </div>
     <div>
       <div class="mahi_holder">
         <div class="container">
-          Consolidação da Visão
-          <input type="text" name v-model="visao" />
-          Consolidação da Missão
+          <h3> Consolidação da Missão </h3> 
           <input type="text" name v-model="missao" />
-          Consolidação dos valores
+          <h3> Consolidação da Visão </h3> 
+          <input type="text" name v-model="visao" />
+          <h3> Consolidação dos valores </h3> 
           <input type="text" name :v-model="valores" />
-          <div>
-            <h2 @click="selecionar('visao')">Visão</h2>
-          </div>
-          <div v-if="selecionado=='visao'">
-            <div class="row">
-              <div class="col-6" v-for="(campo, i) in campos1" :key="i">
-                <label class="effect-1">Campo {{i+1}}</label>
-                <multiselect
-                  v-model="valores1[i]"
-                  :options="campos1[i]"
-                  :searchable="true"
-                  :close-on-select="true"
-                  :show-labels="false"
-                  placeholder="Selecione"
-                ></multiselect>
-              </div>
+        </div>
+      </div>
+
+      <div class="mahi_holder container">
+        <div class="row">
+          <button class="brk-btn" @click="selecionar('missao')"> Editar Visão </button>
+          <button class="brk-btn" @click="selecionar('visao')"> Editar Missão </button>
+          <button class="brk-btn" > Editar Valores </button>
+          <button class="brk-btn" @click="salvarConceitos">Confirmar Conceitos</button>
+        </div>
+
+        <div v-if="selecionado=='visao'">
+          <div class="row">
+            <div class="col-6" v-for="(campo, i) in campos1" :key="i">
+              <label class="effect-1">Campo {{i+1}}</label>
+              <multiselect
+                v-model="valores1[i]"
+                :options="campos1[i]"
+                :searchable="true"
+                :close-on-select="true"
+                :show-labels="false"
+                placeholder="Selecione"
+              ></multiselect>
             </div>
-            <button class="btn btn-success" @click="selecionar('')">Confirmar</button>
           </div>
+          <!-- <button class="btn btn-success" @click="selecionar('')">Confirmar</button> -->
         </div>
-        <div>
-          <h2 @click="selecionar('missao')">Missão</h2>
-        </div>
+
         <div v-if="selecionado=='missao'">
           <div class="row">
             <div class="col-6" v-for="(campo, i) in campos2" :key="i">
@@ -72,11 +77,14 @@
               ></multiselect>
             </div>
           </div>
-          <button class="btn btn-success" @click="salvarConceitos">Confirmar</button>
         </div>
       </div>
+      <!-- <div>
+        <h2 @click="selecionar('missao')">Missão</h2>
+      </div>-->
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -232,7 +240,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import "~vue-multiselect/dist/vue-multiselect.min.css";
 
 /*
@@ -242,12 +250,20 @@ LEVEL 1. RESET STYLES
 */
 @import "~vue-multiselect/dist/vue-multiselect.min.css";
 
+h1 {
+  color: black;
+}
+
+text {
+  color: black;
+}
+
 .field {
-  --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
+  --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, black);
 }
 
 .field__input {
-  background-color: #5555;
+  background-color: rgb(212, 209, 209);
   border-radius: 0;
   border: none;
 
@@ -264,7 +280,7 @@ LEVEL 1. RESET STYLES
 
 .field__input:focus::-moz-placeholder {
   color: var(--uiFieldPlaceholderColor);
-  opacity: 1;
+  opacity: 0;
 }
 
 /*
@@ -335,12 +351,12 @@ LEVEL 3. PRESENTATION STYLES
 }
 
 .a-field__input:focus::-webkit-input-placeholder {
-  opacity: 1;
+  opacity: 0;
   transition-delay: 0.2s;
 }
 
 .a-field__input:focus::-moz-placeholder {
-  opacity: 1;
+  opacity: 0;
   transition-delay: 0.2s;
 }
 
@@ -372,7 +388,7 @@ LEVEL 3. PRESENTATION STYLES
 }
 
 .a-field__input:focus ~ .a-field__label-wrap .a-field__label {
-  opacity: 1;
+  opacity: 0;
   bottom: var(--uiFieldHeight);
 }
 
@@ -433,7 +449,7 @@ LEVEL 3. PRESENTATION STYLES
 
 .a-field_a3 .a-field__input:focus ~ .a-field__label-wrap::after {
   height: 100%;
-  opacity: 1;
+  opacity: 0;
 }
 
 .a-field_a3 .a-field__input:focus ~ .a-field__label-wrap .a-field__label {
@@ -447,8 +463,8 @@ LEVEL 4. SETTINGS
 */
 
 .field {
-  --fieldBorderColor: #7495c7;
-  --fieldBorderColorActive: #4d50e9;
+  --fieldBorderColor: black;
+  --fieldBorderColorActive: rgb(47, 64, 161);
 }
 
 /*
@@ -471,6 +487,7 @@ body {
   box-sizing: border-box;
   width: 100%;
   max-width: 1000px;
+  margin-bottom: 10px;
   margin: auto;
   padding: 15px;
   position: center;
@@ -478,6 +495,10 @@ body {
   grid-gap: 20px;
   align-items: flex-end;
   order: 1;
+}
+
+h3 {
+  color:black;
 }
 
 @media (min-width: 481px) {
@@ -495,7 +516,7 @@ body {
 /* necessary to give position: relative to parent. */
 input[type="text"] {
   font: 15px/24px "Muli", sans-serif;
-  color: #333;
+  color: black;
   width: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
@@ -513,7 +534,7 @@ input[type="text"] {
 } /* necessary to give position: relative to parent. */
 input[type="text"] {
   font: 15px/24px "Lato", Arial, sans-serif;
-  color: #333;
+  color: black;
   width: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
@@ -527,7 +548,7 @@ input[type="text"] {
 } /* necessary to give position: relative to parent. */
 input[type="text"] {
   font: 15px/24px "Lato", Arial, sans-serif;
-  color: #333;
+  color: black;
   width: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
@@ -538,7 +559,7 @@ input[type="text"] {
 .effect-3 {
   border: 0;
   padding: 7px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid black;
 }
 
 .effect-1 ~ .focus-border {
@@ -547,7 +568,7 @@ input[type="text"] {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #64b366;
+  background-color: black;
   transition: 0.4s;
 }
 .effect-1:focus ~ .focus-border {
@@ -561,7 +582,7 @@ input[type="text"] {
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: #64b366;
+  background-color: black;
   transition: 0.4s;
 }
 .effect-2:focus ~ .focus-border {
@@ -586,7 +607,7 @@ input[type="text"] {
   left: 0;
   width: 0;
   height: 100%;
-  background-color: #64b366;
+  background-color: black;
   transition: 0.4s;
 }
 .effect-3 ~ .focus-border:after {
@@ -599,7 +620,67 @@ input[type="text"] {
   transition: 0.4s;
 }
 input {
-  background-color: #5555;
-  color: #ccc !important;
+  background-color: white;
+  color: black !important;
 }
+
+.underlined-a {
+  text-decoration: none;
+  color: aqua;
+  padding-bottom: 0.15em;
+  box-sizing: border-box;
+  box-shadow: inset 0 -0.2em 0 rgb(47, 64, 161);
+  transition: 0.2s;
+  &:hover {
+    color: #222;
+    box-shadow: inset 0 -2em 0 rgb(47, 64, 161);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+}
+
+.brk-btn {
+  position: relative;
+  background: none;
+  color: rgb(47, 64, 161);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0.2em solid rgb(47, 64, 161);
+  padding: 0.5em 1em;
+  margin: 10px;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: rgb(212, 209, 209);
+    height: 0.3em;
+    right: 20%;
+    top: -0.21em;
+    transform: skewX(-45deg);
+    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    background: rgb(212, 209, 209);
+    height: 0.3em;
+    left: 20%;
+    bottom: -0.25em;
+    transform: skewX(45deg);
+    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  &:hover {
+    &::before {
+      right: 80%;
+    }
+    &::after {
+      left: 80%;
+    }
+  }
+}
+
 </style>

@@ -196,7 +196,7 @@ a {
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab {
   color: #fff;
-  border-color: #1161ee;
+  border-color: rgb(47, 64, 161);
 }
 .login-form {
   min-height: 345px;
@@ -231,7 +231,7 @@ a {
   font-size: 16px;
 }
 .login-form .group .button {
-  background: #1161ee;
+  background: rgb(47, 64, 161);
 }
 .login-form .group label .icon {
   width: 15px;
